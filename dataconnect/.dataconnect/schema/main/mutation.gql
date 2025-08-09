@@ -1,0 +1,1102 @@
+extend type Mutation {
+  """
+  ✨ Insert a single `Chapter` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  chapter_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Chapter_Data!
+  ): Chapter_KeyOutput! @fdc_generated(from: "Chapter", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Class` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  class_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Class_Data!
+  ): Class_KeyOutput! @fdc_generated(from: "Class", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `ClassSubject` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  classSubject_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: ClassSubject_Data!
+  ): ClassSubject_KeyOutput! @fdc_generated(from: "ClassSubject", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Lesson` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  lesson_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Lesson_Data!
+  ): Lesson_KeyOutput! @fdc_generated(from: "Lesson", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `School` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  school_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: School_Data!
+  ): School_KeyOutput! @fdc_generated(from: "School", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Subject` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  subject_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Subject_Data!
+  ): Subject_KeyOutput! @fdc_generated(from: "Subject", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Teacher` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  teacher_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Teacher_Data!
+  ): Teacher_KeyOutput! @fdc_generated(from: "Teacher", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `TeacherClass` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  teacherClass_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: TeacherClass_Data!
+  ): TeacherClass_KeyOutput! @fdc_generated(from: "TeacherClass", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `TeacherSubject` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  teacherSubject_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: TeacherSubject_Data!
+  ): TeacherSubject_KeyOutput! @fdc_generated(from: "TeacherSubject", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `User` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `Chapter` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  chapter_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Chapter_Data!]!
+  ): [Chapter_KeyOutput!]! @fdc_generated(from: "Chapter", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Class` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  class_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Class_Data!]!
+  ): [Class_KeyOutput!]! @fdc_generated(from: "Class", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `ClassSubject` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  classSubject_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [ClassSubject_Data!]!
+  ): [ClassSubject_KeyOutput!]! @fdc_generated(from: "ClassSubject", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Lesson` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  lesson_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Lesson_Data!]!
+  ): [Lesson_KeyOutput!]! @fdc_generated(from: "Lesson", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `School` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  school_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [School_Data!]!
+  ): [School_KeyOutput!]! @fdc_generated(from: "School", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Subject` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  subject_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Subject_Data!]!
+  ): [Subject_KeyOutput!]! @fdc_generated(from: "Subject", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Teacher` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  teacher_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Teacher_Data!]!
+  ): [Teacher_KeyOutput!]! @fdc_generated(from: "Teacher", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `TeacherClass` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  teacherClass_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [TeacherClass_Data!]!
+  ): [TeacherClass_KeyOutput!]! @fdc_generated(from: "TeacherClass", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `TeacherSubject` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  teacherSubject_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [TeacherSubject_Data!]!
+  ): [TeacherSubject_KeyOutput!]! @fdc_generated(from: "TeacherSubject", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `User` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert or update a single `Chapter` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Chapter`.
+  """
+  chapter_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Chapter_Data!
+  ): Chapter_KeyOutput! @fdc_generated(from: "Chapter", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Class` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Class`.
+  """
+  class_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Class_Data!
+  ): Class_KeyOutput! @fdc_generated(from: "Class", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `ClassSubject` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ClassSubject`.
+  """
+  classSubject_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: ClassSubject_Data!
+  ): ClassSubject_KeyOutput! @fdc_generated(from: "ClassSubject", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Lesson` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Lesson`.
+  """
+  lesson_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Lesson_Data!
+  ): Lesson_KeyOutput! @fdc_generated(from: "Lesson", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `School` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `School`.
+  """
+  school_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: School_Data!
+  ): School_KeyOutput! @fdc_generated(from: "School", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Subject` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Subject`.
+  """
+  subject_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Subject_Data!
+  ): Subject_KeyOutput! @fdc_generated(from: "Subject", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Teacher` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Teacher`.
+  """
+  teacher_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Teacher_Data!
+  ): Teacher_KeyOutput! @fdc_generated(from: "Teacher", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `TeacherClass` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `TeacherClass`.
+  """
+  teacherClass_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: TeacherClass_Data!
+  ): TeacherClass_KeyOutput! @fdc_generated(from: "TeacherClass", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `TeacherSubject` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `TeacherSubject`.
+  """
+  teacherSubject_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: TeacherSubject_Data!
+  ): TeacherSubject_KeyOutput! @fdc_generated(from: "TeacherSubject", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `User` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update `Chapter` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Chapter`.
+  """
+  chapter_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Chapter_Data!]!
+  ): [Chapter_KeyOutput!]! @fdc_generated(from: "Chapter", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Class` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Class`.
+  """
+  class_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Class_Data!]!
+  ): [Class_KeyOutput!]! @fdc_generated(from: "Class", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `ClassSubject` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `ClassSubject`.
+  """
+  classSubject_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [ClassSubject_Data!]!
+  ): [ClassSubject_KeyOutput!]! @fdc_generated(from: "ClassSubject", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Lesson` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Lesson`.
+  """
+  lesson_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Lesson_Data!]!
+  ): [Lesson_KeyOutput!]! @fdc_generated(from: "Lesson", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `School` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `School`.
+  """
+  school_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [School_Data!]!
+  ): [School_KeyOutput!]! @fdc_generated(from: "School", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Subject` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Subject`.
+  """
+  subject_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Subject_Data!]!
+  ): [Subject_KeyOutput!]! @fdc_generated(from: "Subject", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Teacher` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Teacher`.
+  """
+  teacher_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Teacher_Data!]!
+  ): [Teacher_KeyOutput!]! @fdc_generated(from: "Teacher", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `TeacherClass` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `TeacherClass`.
+  """
+  teacherClass_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [TeacherClass_Data!]!
+  ): [TeacherClass_KeyOutput!]! @fdc_generated(from: "TeacherClass", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `TeacherSubject` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `TeacherSubject`.
+  """
+  teacherSubject_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [TeacherSubject_Data!]!
+  ): [TeacherSubject_KeyOutput!]! @fdc_generated(from: "TeacherSubject", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `User` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `Chapter` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Chapter` or `null` if not found.
+  """
+  chapter_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Chapter_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Chapter_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Chapter_Data!
+  ): Chapter_KeyOutput @fdc_generated(from: "Chapter", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Class` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Class` or `null` if not found.
+  """
+  class_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Class_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Class_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Class_Data!
+  ): Class_KeyOutput @fdc_generated(from: "Class", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `ClassSubject` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `ClassSubject` or `null` if not found.
+  """
+  classSubject_update(
+    """
+    The key used to identify the object.
+    """
+    key: ClassSubject_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ClassSubject_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: ClassSubject_Data!
+  ): ClassSubject_KeyOutput @fdc_generated(from: "ClassSubject", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Lesson` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Lesson` or `null` if not found.
+  """
+  lesson_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Lesson_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Lesson_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Lesson_Data!
+  ): Lesson_KeyOutput @fdc_generated(from: "Lesson", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `School` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `School` or `null` if not found.
+  """
+  school_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: School_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: School_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: School_Data!
+  ): School_KeyOutput @fdc_generated(from: "School", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Subject` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Subject` or `null` if not found.
+  """
+  subject_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Subject_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Subject_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Subject_Data!
+  ): Subject_KeyOutput @fdc_generated(from: "Subject", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Teacher` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Teacher` or `null` if not found.
+  """
+  teacher_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Teacher_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Teacher_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Teacher_Data!
+  ): Teacher_KeyOutput @fdc_generated(from: "Teacher", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `TeacherClass` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `TeacherClass` or `null` if not found.
+  """
+  teacherClass_update(
+    """
+    The key used to identify the object.
+    """
+    key: TeacherClass_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: TeacherClass_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: TeacherClass_Data!
+  ): TeacherClass_KeyOutput @fdc_generated(from: "TeacherClass", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `TeacherSubject` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `TeacherSubject` or `null` if not found.
+  """
+  teacherSubject_update(
+    """
+    The key used to identify the object.
+    """
+    key: TeacherSubject_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: TeacherSubject_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: TeacherSubject_Data!
+  ): TeacherSubject_KeyOutput @fdc_generated(from: "TeacherSubject", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `User` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `User` or `null` if not found.
+  """
+  user_update(
+    """
+    The unique ID of the object.
+    """
+    id: String
+
+    """
+    ✨ `_expr` server value variant of `id` (The unique ID of the object.)
+    """
+    id_expr: String_Expr
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: User_Data!
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update `Chapter` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  chapter_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Chapter_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Chapter_Data!
+  ): Int! @fdc_generated(from: "Chapter", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Class` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  class_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Class_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Class_Data!
+  ): Int! @fdc_generated(from: "Class", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `ClassSubject` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  classSubject_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: ClassSubject_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: ClassSubject_Data!
+  ): Int! @fdc_generated(from: "ClassSubject", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Lesson` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  lesson_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Lesson_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Lesson_Data!
+  ): Int! @fdc_generated(from: "Lesson", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `School` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  school_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: School_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: School_Data!
+  ): Int! @fdc_generated(from: "School", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Subject` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  subject_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Subject_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Subject_Data!
+  ): Int! @fdc_generated(from: "Subject", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Teacher` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  teacher_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Teacher_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Teacher_Data!
+  ): Int! @fdc_generated(from: "Teacher", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `TeacherClass` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  teacherClass_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: TeacherClass_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: TeacherClass_Data!
+  ): Int! @fdc_generated(from: "TeacherClass", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `TeacherSubject` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  teacherSubject_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: TeacherSubject_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: TeacherSubject_Data!
+  ): Int! @fdc_generated(from: "TeacherSubject", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `User` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  user_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: User_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: User_Data!
+  ): Int! @fdc_generated(from: "User", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Delete a single `Chapter` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  chapter_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Chapter_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Chapter_FirstRow
+  ): Chapter_KeyOutput @fdc_generated(from: "Chapter", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Class` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  class_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Class_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Class_FirstRow
+  ): Class_KeyOutput @fdc_generated(from: "Class", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `ClassSubject` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  classSubject_delete(
+    """
+    The key used to identify the object.
+    """
+    key: ClassSubject_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ClassSubject_FirstRow
+  ): ClassSubject_KeyOutput @fdc_generated(from: "ClassSubject", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Lesson` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  lesson_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Lesson_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Lesson_FirstRow
+  ): Lesson_KeyOutput @fdc_generated(from: "Lesson", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `School` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  school_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: School_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: School_FirstRow
+  ): School_KeyOutput @fdc_generated(from: "School", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Subject` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  subject_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Subject_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Subject_FirstRow
+  ): Subject_KeyOutput @fdc_generated(from: "Subject", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Teacher` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  teacher_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Teacher_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Teacher_FirstRow
+  ): Teacher_KeyOutput @fdc_generated(from: "Teacher", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `TeacherClass` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  teacherClass_delete(
+    """
+    The key used to identify the object.
+    """
+    key: TeacherClass_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: TeacherClass_FirstRow
+  ): TeacherClass_KeyOutput @fdc_generated(from: "TeacherClass", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `TeacherSubject` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  teacherSubject_delete(
+    """
+    The key used to identify the object.
+    """
+    key: TeacherSubject_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: TeacherSubject_FirstRow
+  ): TeacherSubject_KeyOutput @fdc_generated(from: "TeacherSubject", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `User` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  user_delete(
+    """
+    The unique ID of the object.
+    """
+    id: String
+
+    """
+    ✨ `_expr` server value variant of `id` (The unique ID of the object.)
+    """
+    id_expr: String_Expr
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `Chapter` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  chapter_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Chapter_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Class` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  class_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Class_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Class", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `ClassSubject` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  classSubject_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: ClassSubject_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "ClassSubject", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Lesson` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  lesson_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Lesson_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `School` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  school_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: School_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "School", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Subject` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  subject_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Subject_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Subject", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Teacher` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  teacher_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Teacher_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Teacher", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `TeacherClass` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  teacherClass_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: TeacherClass_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherClass", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `TeacherSubject` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  teacherSubject_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: TeacherSubject_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherSubject", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `User` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  user_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: User_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "User", purpose: DELETE_MULTIPLE)
+}

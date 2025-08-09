@@ -1,0 +1,134 @@
+extend type Chapter {
+  """
+  ✨ Implicit foreign key field based on `Chapter`.`createdBy`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  createdById: String! @fdc_generated(from: "Chapter.createdBy", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Chapter`.`school`. It must match the value of `School`.`id`. See `@ref` for how to customize it.
+  """
+  schoolId: UUID! @fdc_generated(from: "Chapter.school", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Chapter`.`subject`. It must match the value of `Subject`.`id`. See `@ref` for how to customize it.
+  """
+  subjectId: UUID! @fdc_generated(from: "Chapter.subject", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Class {
+  """
+  ✨ Implicit foreign key field based on `Class`.`createdBy`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  createdById: String! @fdc_generated(from: "Class.createdBy", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Class`.`school`. It must match the value of `School`.`id`. See `@ref` for how to customize it.
+  """
+  schoolId: UUID! @fdc_generated(from: "Class.school", purpose: IMPLICIT_REF_FIELD)
+}
+extend type ClassSubject {
+  """
+  ✨ Implicit foreign key field based on `ClassSubject`.`class`. It must match the value of `Class`.`id`. See `@ref` for how to customize it.
+  """
+  classId: UUID! @fdc_generated(from: "ClassSubject.class", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `ClassSubject`.`subject`. It must match the value of `Subject`.`id`. See `@ref` for how to customize it.
+  """
+  subjectId: UUID! @fdc_generated(from: "ClassSubject.subject", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `ClassSubject`.`createdBy`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  createdById: String! @fdc_generated(from: "ClassSubject.createdBy", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `ClassSubject`.`school`. It must match the value of `School`.`id`. See `@ref` for how to customize it.
+  """
+  schoolId: UUID! @fdc_generated(from: "ClassSubject.school", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Lesson {
+  """
+  ✨ Implicit foreign key field based on `Lesson`.`chapter`. It must match the value of `Chapter`.`id`. See `@ref` for how to customize it.
+  """
+  chapterId: UUID! @fdc_generated(from: "Lesson.chapter", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Lesson`.`createdBy`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  createdById: String! @fdc_generated(from: "Lesson.createdBy", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Lesson`.`school`. It must match the value of `School`.`id`. See `@ref` for how to customize it.
+  """
+  schoolId: UUID! @fdc_generated(from: "Lesson.school", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Lesson`.`subject`. It must match the value of `Subject`.`id`. See `@ref` for how to customize it.
+  """
+  subjectId: UUID! @fdc_generated(from: "Lesson.subject", purpose: IMPLICIT_REF_FIELD)
+}
+extend type School {
+  """
+  ✨ Implicit foreign key field based on `School`.`branchAdmin`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  branchAdminId: String @fdc_generated(from: "School.branchAdmin", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `School`.`mainAdmin`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  mainAdminId: String! @fdc_generated(from: "School.mainAdmin", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `School`.`mainBranch`. It must match the value of `School`.`id`. See `@ref` for how to customize it.
+  """
+  mainBranchId: UUID @fdc_generated(from: "School.mainBranch", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Subject {
+  """
+  ✨ Implicit foreign key field based on `Subject`.`createdBy`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  createdById: String! @fdc_generated(from: "Subject.createdBy", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Subject`.`school`. It must match the value of `School`.`id`. See `@ref` for how to customize it.
+  """
+  schoolId: UUID! @fdc_generated(from: "Subject.school", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Teacher {
+  """
+  ✨ Implicit foreign key field based on `Teacher`.`createdBy`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  createdById: String! @fdc_generated(from: "Teacher.createdBy", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Teacher`.`school`. It must match the value of `School`.`id`. See `@ref` for how to customize it.
+  """
+  schoolId: UUID! @fdc_generated(from: "Teacher.school", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Teacher`.`user`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  userId: String! @fdc_generated(from: "Teacher.user", purpose: IMPLICIT_REF_FIELD)
+}
+extend type TeacherClass {
+  """
+  ✨ Implicit foreign key field based on `TeacherClass`.`teacher`. It must match the value of `Teacher`.`id`. See `@ref` for how to customize it.
+  """
+  teacherId: UUID! @fdc_generated(from: "TeacherClass.teacher", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `TeacherClass`.`class`. It must match the value of `Class`.`id`. See `@ref` for how to customize it.
+  """
+  classId: UUID! @fdc_generated(from: "TeacherClass.class", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `TeacherClass`.`createdBy`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  createdById: String! @fdc_generated(from: "TeacherClass.createdBy", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `TeacherClass`.`school`. It must match the value of `School`.`id`. See `@ref` for how to customize it.
+  """
+  schoolId: UUID! @fdc_generated(from: "TeacherClass.school", purpose: IMPLICIT_REF_FIELD)
+}
+extend type TeacherSubject {
+  """
+  ✨ Implicit foreign key field based on `TeacherSubject`.`teacher`. It must match the value of `Teacher`.`id`. See `@ref` for how to customize it.
+  """
+  teacherId: UUID! @fdc_generated(from: "TeacherSubject.teacher", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `TeacherSubject`.`subject`. It must match the value of `Subject`.`id`. See `@ref` for how to customize it.
+  """
+  subjectId: UUID! @fdc_generated(from: "TeacherSubject.subject", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `TeacherSubject`.`createdBy`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  createdById: String! @fdc_generated(from: "TeacherSubject.createdBy", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `TeacherSubject`.`school`. It must match the value of `School`.`id`. See `@ref` for how to customize it.
+  """
+  schoolId: UUID! @fdc_generated(from: "TeacherSubject.school", purpose: IMPLICIT_REF_FIELD)
+}

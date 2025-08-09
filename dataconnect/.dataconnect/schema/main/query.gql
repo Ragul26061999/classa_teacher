@@ -1,0 +1,522 @@
+extend type Query {
+  """
+  ✨ Look up a single `Chapter` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  chapter(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Chapter_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Chapter_FirstRow
+  ): Chapter @fdc_generated(from: "Chapter", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Class` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  class(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Class_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Class_FirstRow
+  ): Class @fdc_generated(from: "Class", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `ClassSubject` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  classSubject(
+    """
+    The key used to identify the object.
+    """
+    key: ClassSubject_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: ClassSubject_FirstRow
+  ): ClassSubject @fdc_generated(from: "ClassSubject", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Lesson` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  lesson(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Lesson_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Lesson_FirstRow
+  ): Lesson @fdc_generated(from: "Lesson", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `School` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  school(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: School_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: School_FirstRow
+  ): School @fdc_generated(from: "School", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Subject` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  subject(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Subject_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Subject_FirstRow
+  ): Subject @fdc_generated(from: "Subject", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Teacher` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  teacher(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Teacher_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Teacher_FirstRow
+  ): Teacher @fdc_generated(from: "Teacher", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `TeacherClass` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  teacherClass(
+    """
+    The key used to identify the object.
+    """
+    key: TeacherClass_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: TeacherClass_FirstRow
+  ): TeacherClass @fdc_generated(from: "TeacherClass", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `TeacherSubject` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  teacherSubject(
+    """
+    The key used to identify the object.
+    """
+    key: TeacherSubject_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: TeacherSubject_FirstRow
+  ): TeacherSubject @fdc_generated(from: "TeacherSubject", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `User` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  user(
+    """
+    The unique ID of the object.
+    """
+    id: String
+
+    """
+    ✨ `_expr` server value variant of `id` (The unique ID of the object.)
+    """
+    id_expr: String_Expr
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User @fdc_generated(from: "User", purpose: QUERY_SINGLE)
+  """
+  ✨ List `Chapter` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  chapters(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Chapter_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Chapter_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Chapter_Having
+  ): [Chapter!]! @fdc_generated(from: "Chapter", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Class` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  classes(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Class_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Class_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Class_Having
+  ): [Class!]! @fdc_generated(from: "Class", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `ClassSubject` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  classSubjects(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ClassSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ClassSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ClassSubject_Having
+  ): [ClassSubject!]! @fdc_generated(from: "ClassSubject", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Lesson` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  lessons(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Lesson_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Lesson_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Lesson_Having
+  ): [Lesson!]! @fdc_generated(from: "Lesson", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `School` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  schools(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: School_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [School_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: School_Having
+  ): [School!]! @fdc_generated(from: "School", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Subject` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  subjects(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Subject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Subject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Subject_Having
+  ): [Subject!]! @fdc_generated(from: "Subject", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Teacher` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  teachers(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Teacher_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Teacher_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Teacher_Having
+  ): [Teacher!]! @fdc_generated(from: "Teacher", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `TeacherClass` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  teacherClasses(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherClass_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherClass_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherClass_Having
+  ): [TeacherClass!]! @fdc_generated(from: "TeacherClass", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `TeacherSubject` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  teacherSubjects(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherSubject_Having
+  ): [TeacherSubject!]! @fdc_generated(from: "TeacherSubject", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `User` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  users(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: User_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [User_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: User_Having
+  ): [User!]! @fdc_generated(from: "User", purpose: QUERY_MULTIPLE)
+}

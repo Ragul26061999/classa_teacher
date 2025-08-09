@@ -1,0 +1,2126 @@
+extend type Chapter {
+  """
+  ✨ List `Lesson` objects in a one-to-many relationship (where `Lesson`.`chapter` is this object).
+  """
+  lessons_on_chapter(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Lesson_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Lesson_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Lesson_Having
+  ): [Lesson!]! @fdc_generated(from: "Lesson.chapter", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Chapter", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Chapter` table.
+  """
+  _count: Int! @fdc_generated(from: "Chapter", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Chapter` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Chapter` table where the `createdById` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdById_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter.createdById", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Chapter` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Chapter` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Chapter` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Chapter` table where the `orderIndex` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  orderIndex_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter.orderIndex", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Chapter` table where the `schoolId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  schoolId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter.schoolId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Chapter` table where the `subjectId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  subjectId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter.subjectId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Chapter` table where the `updatedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  updatedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Chapter.updatedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Sum the `orderIndex` field in the `Chapter` table.
+  """
+  orderIndex_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Int @fdc_generated(from: "Chapter.orderIndex", purpose: QUERY_SUM)
+  """
+  ✨ Average the `orderIndex` field in the `Chapter` table.
+  """
+  orderIndex_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Chapter.orderIndex", purpose: QUERY_AVG)
+  """
+  ✨ Minimum of the `createdAt` field in the `Chapter` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "Chapter.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `orderIndex` field in the `Chapter` table.
+  """
+  orderIndex_min: Int @fdc_generated(from: "Chapter.orderIndex", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `updatedAt` field in the `Chapter` table.
+  """
+  updatedAt_min: Timestamp @fdc_generated(from: "Chapter.updatedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `Chapter` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "Chapter.createdAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `orderIndex` field in the `Chapter` table.
+  """
+  orderIndex_max: Int @fdc_generated(from: "Chapter.orderIndex", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `updatedAt` field in the `Chapter` table.
+  """
+  updatedAt_max: Timestamp @fdc_generated(from: "Chapter.updatedAt", purpose: QUERY_MAX)
+}
+extend type Class {
+  """
+  ✨ List `ClassSubject` objects in a one-to-many relationship (where `ClassSubject`.`class` is this object).
+  """
+  classSubjects_on_class(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ClassSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ClassSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ClassSubject_Having
+  ): [ClassSubject!]! @fdc_generated(from: "ClassSubject.class", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `TeacherClass` objects in a one-to-many relationship (where `TeacherClass`.`class` is this object).
+  """
+  teacherClasses_on_class(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherClass_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherClass_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherClass_Having
+  ): [TeacherClass!]! @fdc_generated(from: "TeacherClass.class", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Subject` objects using `ClassSubject` as the join table (a `ClassSubject` object exists where its `class` is this and its `subject` is that).
+  """
+  subjects_via_ClassSubject(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ClassSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ClassSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ClassSubject_Having
+  ): [Subject!]! @fdc_generated(from: "ClassSubject", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  ✨ List `Teacher` objects using `TeacherClass` as the join table (a `TeacherClass` object exists where its `class` is this and its `teacher` is that).
+  """
+  teachers_via_TeacherClass(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherClass_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherClass_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherClass_Having
+  ): [Teacher!]! @fdc_generated(from: "TeacherClass", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Class", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Class` table.
+  """
+  _count: Int! @fdc_generated(from: "Class", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Class` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Class.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Class` table where the `createdById` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdById_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Class.createdById", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Class` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Class.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Class` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Class.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Class` table where the `schoolId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  schoolId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Class.schoolId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Class` table where the `updatedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  updatedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Class.updatedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `Class` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "Class.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `updatedAt` field in the `Class` table.
+  """
+  updatedAt_min: Timestamp @fdc_generated(from: "Class.updatedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `Class` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "Class.createdAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `updatedAt` field in the `Class` table.
+  """
+  updatedAt_max: Timestamp @fdc_generated(from: "Class.updatedAt", purpose: QUERY_MAX)
+}
+extend type ClassSubject {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "ClassSubject", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `ClassSubject` table.
+  """
+  _count: Int! @fdc_generated(from: "ClassSubject", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ClassSubject` table where the `classId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  classId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ClassSubject.classId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ClassSubject` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ClassSubject.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ClassSubject` table where the `createdById` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdById_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ClassSubject.createdById", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ClassSubject` table where the `schoolId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  schoolId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ClassSubject.schoolId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ClassSubject` table where the `subjectId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  subjectId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ClassSubject.subjectId", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `ClassSubject` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "ClassSubject.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `ClassSubject` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "ClassSubject.createdAt", purpose: QUERY_MAX)
+}
+extend type Lesson {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Lesson", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Lesson` table.
+  """
+  _count: Int! @fdc_generated(from: "Lesson", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `chapterId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  chapterId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.chapterId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `content` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  content_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.content", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `createdById` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdById_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.createdById", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `orderIndex` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  orderIndex_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.orderIndex", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `schoolId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  schoolId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.schoolId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `subjectId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  subjectId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.subjectId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Lesson` table where the `updatedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  updatedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Lesson.updatedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Sum the `orderIndex` field in the `Lesson` table.
+  """
+  orderIndex_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Int @fdc_generated(from: "Lesson.orderIndex", purpose: QUERY_SUM)
+  """
+  ✨ Average the `orderIndex` field in the `Lesson` table.
+  """
+  orderIndex_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Lesson.orderIndex", purpose: QUERY_AVG)
+  """
+  ✨ Minimum of the `createdAt` field in the `Lesson` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "Lesson.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `orderIndex` field in the `Lesson` table.
+  """
+  orderIndex_min: Int @fdc_generated(from: "Lesson.orderIndex", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `updatedAt` field in the `Lesson` table.
+  """
+  updatedAt_min: Timestamp @fdc_generated(from: "Lesson.updatedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `Lesson` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "Lesson.createdAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `orderIndex` field in the `Lesson` table.
+  """
+  orderIndex_max: Int @fdc_generated(from: "Lesson.orderIndex", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `updatedAt` field in the `Lesson` table.
+  """
+  updatedAt_max: Timestamp @fdc_generated(from: "Lesson.updatedAt", purpose: QUERY_MAX)
+}
+extend type School {
+  """
+  ✨ List `Chapter` objects in a one-to-many relationship (where `Chapter`.`school` is this object).
+  """
+  chapters_on_school(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Chapter_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Chapter_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Chapter_Having
+  ): [Chapter!]! @fdc_generated(from: "Chapter.school", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Class` objects in a one-to-many relationship (where `Class`.`school` is this object).
+  """
+  classes_on_school(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Class_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Class_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Class_Having
+  ): [Class!]! @fdc_generated(from: "Class.school", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `ClassSubject` objects in a one-to-many relationship (where `ClassSubject`.`school` is this object).
+  """
+  classSubjects_on_school(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ClassSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ClassSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ClassSubject_Having
+  ): [ClassSubject!]! @fdc_generated(from: "ClassSubject.school", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Lesson` objects in a one-to-many relationship (where `Lesson`.`school` is this object).
+  """
+  lessons_on_school(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Lesson_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Lesson_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Lesson_Having
+  ): [Lesson!]! @fdc_generated(from: "Lesson.school", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `School` objects in a one-to-many relationship (where `School`.`mainBranch` is this object).
+  """
+  schools_on_mainBranch(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: School_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [School_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: School_Having
+  ): [School!]! @fdc_generated(from: "School.mainBranch", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Subject` objects in a one-to-many relationship (where `Subject`.`school` is this object).
+  """
+  subjects_on_school(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Subject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Subject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Subject_Having
+  ): [Subject!]! @fdc_generated(from: "Subject.school", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Teacher` objects in a one-to-many relationship (where `Teacher`.`school` is this object).
+  """
+  teachers_on_school(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Teacher_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Teacher_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Teacher_Having
+  ): [Teacher!]! @fdc_generated(from: "Teacher.school", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `TeacherClass` objects in a one-to-many relationship (where `TeacherClass`.`school` is this object).
+  """
+  teacherClasses_on_school(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherClass_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherClass_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherClass_Having
+  ): [TeacherClass!]! @fdc_generated(from: "TeacherClass.school", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `TeacherSubject` objects in a one-to-many relationship (where `TeacherSubject`.`school` is this object).
+  """
+  teacherSubjects_on_school(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherSubject_Having
+  ): [TeacherSubject!]! @fdc_generated(from: "TeacherSubject.school", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "School", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `School` table.
+  """
+  _count: Int! @fdc_generated(from: "School", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `address` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  address_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.address", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `branchAdminId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  branchAdminId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.branchAdminId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `contact` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  contact_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.contact", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `isBranch` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  isBranch_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.isBranch", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `mainAdminId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  mainAdminId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.mainAdminId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `mainBranchId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  mainBranchId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.mainBranchId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `School` table where the `updatedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  updatedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "School.updatedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `School` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "School.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `updatedAt` field in the `School` table.
+  """
+  updatedAt_min: Timestamp @fdc_generated(from: "School.updatedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `School` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "School.createdAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `updatedAt` field in the `School` table.
+  """
+  updatedAt_max: Timestamp @fdc_generated(from: "School.updatedAt", purpose: QUERY_MAX)
+}
+extend type Subject {
+  """
+  ✨ List `Chapter` objects in a one-to-many relationship (where `Chapter`.`subject` is this object).
+  """
+  chapters_on_subject(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Chapter_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Chapter_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Chapter_Having
+  ): [Chapter!]! @fdc_generated(from: "Chapter.subject", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `ClassSubject` objects in a one-to-many relationship (where `ClassSubject`.`subject` is this object).
+  """
+  classSubjects_on_subject(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ClassSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ClassSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ClassSubject_Having
+  ): [ClassSubject!]! @fdc_generated(from: "ClassSubject.subject", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Lesson` objects in a one-to-many relationship (where `Lesson`.`subject` is this object).
+  """
+  lessons_on_subject(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Lesson_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Lesson_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Lesson_Having
+  ): [Lesson!]! @fdc_generated(from: "Lesson.subject", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `TeacherSubject` objects in a one-to-many relationship (where `TeacherSubject`.`subject` is this object).
+  """
+  teacherSubjects_on_subject(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherSubject_Having
+  ): [TeacherSubject!]! @fdc_generated(from: "TeacherSubject.subject", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Class` objects using `ClassSubject` as the join table (a `ClassSubject` object exists where its `subject` is this and its `class` is that).
+  """
+  classes_via_ClassSubject(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ClassSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ClassSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ClassSubject_Having
+  ): [Class!]! @fdc_generated(from: "ClassSubject", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  ✨ List `Teacher` objects using `TeacherSubject` as the join table (a `TeacherSubject` object exists where its `subject` is this and its `teacher` is that).
+  """
+  teachers_via_TeacherSubject(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherSubject_Having
+  ): [Teacher!]! @fdc_generated(from: "TeacherSubject", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Subject", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Subject` table.
+  """
+  _count: Int! @fdc_generated(from: "Subject", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Subject` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Subject.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Subject` table where the `createdById` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdById_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Subject.createdById", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Subject` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Subject.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Subject` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Subject.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Subject` table where the `image` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  image_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Subject.image", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Subject` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Subject.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Subject` table where the `schoolId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  schoolId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Subject.schoolId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Subject` table where the `updatedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  updatedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Subject.updatedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `Subject` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "Subject.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `updatedAt` field in the `Subject` table.
+  """
+  updatedAt_min: Timestamp @fdc_generated(from: "Subject.updatedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `Subject` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "Subject.createdAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `updatedAt` field in the `Subject` table.
+  """
+  updatedAt_max: Timestamp @fdc_generated(from: "Subject.updatedAt", purpose: QUERY_MAX)
+}
+extend type Teacher {
+  """
+  ✨ List `TeacherClass` objects in a one-to-many relationship (where `TeacherClass`.`teacher` is this object).
+  """
+  teacherClasses_on_teacher(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherClass_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherClass_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherClass_Having
+  ): [TeacherClass!]! @fdc_generated(from: "TeacherClass.teacher", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `TeacherSubject` objects in a one-to-many relationship (where `TeacherSubject`.`teacher` is this object).
+  """
+  teacherSubjects_on_teacher(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherSubject_Having
+  ): [TeacherSubject!]! @fdc_generated(from: "TeacherSubject.teacher", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Class` objects using `TeacherClass` as the join table (a `TeacherClass` object exists where its `teacher` is this and its `class` is that).
+  """
+  classes_via_TeacherClass(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherClass_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherClass_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherClass_Having
+  ): [Class!]! @fdc_generated(from: "TeacherClass", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  ✨ List `Subject` objects using `TeacherSubject` as the join table (a `TeacherSubject` object exists where its `teacher` is this and its `subject` is that).
+  """
+  subjects_via_TeacherSubject(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherSubject_Having
+  ): [Subject!]! @fdc_generated(from: "TeacherSubject", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Teacher", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Teacher` table.
+  """
+  _count: Int! @fdc_generated(from: "Teacher", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Teacher` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Teacher.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Teacher` table where the `createdById` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdById_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Teacher.createdById", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Teacher` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Teacher.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Teacher` table where the `schoolId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  schoolId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Teacher.schoolId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Teacher` table where the `teacherId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  teacherId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Teacher.teacherId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Teacher` table where the `updatedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  updatedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Teacher.updatedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Teacher` table where the `userId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  userId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Teacher.userId", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `Teacher` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "Teacher.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `updatedAt` field in the `Teacher` table.
+  """
+  updatedAt_min: Timestamp @fdc_generated(from: "Teacher.updatedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `Teacher` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "Teacher.createdAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `updatedAt` field in the `Teacher` table.
+  """
+  updatedAt_max: Timestamp @fdc_generated(from: "Teacher.updatedAt", purpose: QUERY_MAX)
+}
+extend type TeacherClass {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "TeacherClass", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `TeacherClass` table.
+  """
+  _count: Int! @fdc_generated(from: "TeacherClass", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherClass` table where the `classId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  classId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherClass.classId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherClass` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherClass.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherClass` table where the `createdById` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdById_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherClass.createdById", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherClass` table where the `schoolId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  schoolId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherClass.schoolId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherClass` table where the `teacherId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  teacherId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherClass.teacherId", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `TeacherClass` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "TeacherClass.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `TeacherClass` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "TeacherClass.createdAt", purpose: QUERY_MAX)
+}
+extend type TeacherSubject {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "TeacherSubject", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `TeacherSubject` table.
+  """
+  _count: Int! @fdc_generated(from: "TeacherSubject", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherSubject` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherSubject.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherSubject` table where the `createdById` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdById_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherSubject.createdById", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherSubject` table where the `schoolId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  schoolId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherSubject.schoolId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherSubject` table where the `subjectId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  subjectId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherSubject.subjectId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `TeacherSubject` table where the `teacherId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  teacherId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "TeacherSubject.teacherId", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `TeacherSubject` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "TeacherSubject.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `TeacherSubject` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "TeacherSubject.createdAt", purpose: QUERY_MAX)
+}
+extend type User {
+  """
+  ✨ List `Chapter` objects in a one-to-many relationship (where `Chapter`.`createdBy` is this object).
+  """
+  chapters_on_createdBy(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Chapter_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Chapter_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Chapter_Having
+  ): [Chapter!]! @fdc_generated(from: "Chapter.createdBy", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Class` objects in a one-to-many relationship (where `Class`.`createdBy` is this object).
+  """
+  classes_on_createdBy(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Class_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Class_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Class_Having
+  ): [Class!]! @fdc_generated(from: "Class.createdBy", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `ClassSubject` objects in a one-to-many relationship (where `ClassSubject`.`createdBy` is this object).
+  """
+  classSubjects_on_createdBy(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ClassSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ClassSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ClassSubject_Having
+  ): [ClassSubject!]! @fdc_generated(from: "ClassSubject.createdBy", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Lesson` objects in a one-to-many relationship (where `Lesson`.`createdBy` is this object).
+  """
+  lessons_on_createdBy(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Lesson_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Lesson_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Lesson_Having
+  ): [Lesson!]! @fdc_generated(from: "Lesson.createdBy", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `School` objects in a one-to-many relationship (where `School`.`branchAdmin` is this object).
+  """
+  schools_on_branchAdmin(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: School_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [School_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: School_Having
+  ): [School!]! @fdc_generated(from: "School.branchAdmin", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `School` objects in a one-to-many relationship (where `School`.`mainAdmin` is this object).
+  """
+  schools_on_mainAdmin(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: School_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [School_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: School_Having
+  ): [School!]! @fdc_generated(from: "School.mainAdmin", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Subject` objects in a one-to-many relationship (where `Subject`.`createdBy` is this object).
+  """
+  subjects_on_createdBy(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Subject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Subject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Subject_Having
+  ): [Subject!]! @fdc_generated(from: "Subject.createdBy", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Teacher` objects in a one-to-many relationship (where `Teacher`.`createdBy` is this object).
+  """
+  teachers_on_createdBy(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Teacher_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Teacher_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Teacher_Having
+  ): [Teacher!]! @fdc_generated(from: "Teacher.createdBy", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Teacher` objects in a one-to-many relationship (where `Teacher`.`user` is this object).
+  """
+  teachers_on_user(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Teacher_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Teacher_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Teacher_Having
+  ): [Teacher!]! @fdc_generated(from: "Teacher.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `TeacherClass` objects in a one-to-many relationship (where `TeacherClass`.`createdBy` is this object).
+  """
+  teacherClasses_on_createdBy(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherClass_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherClass_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherClass_Having
+  ): [TeacherClass!]! @fdc_generated(from: "TeacherClass.createdBy", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `TeacherSubject` objects in a one-to-many relationship (where `TeacherSubject`.`createdBy` is this object).
+  """
+  teacherSubjects_on_createdBy(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: TeacherSubject_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [TeacherSubject_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: TeacherSubject_Having
+  ): [TeacherSubject!]! @fdc_generated(from: "TeacherSubject.createdBy", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "User", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `User` table.
+  """
+  _count: Int! @fdc_generated(from: "User", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `displayName` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  displayName_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.displayName", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `email` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  email_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.email", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `role` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  role_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.role", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `updatedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  updatedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.updatedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `User` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "User.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `updatedAt` field in the `User` table.
+  """
+  updatedAt_min: Timestamp @fdc_generated(from: "User.updatedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `User` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "User.createdAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `updatedAt` field in the `User` table.
+  """
+  updatedAt_max: Timestamp @fdc_generated(from: "User.updatedAt", purpose: QUERY_MAX)
+}
