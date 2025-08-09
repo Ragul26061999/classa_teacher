@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { collection, addDoc, updateDoc, doc, serverTimestamp, query, where, getDocs } from "firebase/firestore";
+import { collection, addDoc, updateDoc, doc, serverTimestamp, query, where, getDocs, getDoc, documentId } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from "../../../lib/firebaseClient";
 import { useAuth } from "../../contexts/AuthContext";
@@ -138,6 +138,7 @@ export default function DiaryForm({ entryId, initialData, onSuccess, onCancel }:
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
+  const [teacherSubjectIds, setTeacherSubjectIds] = useState<string[]>([]);
 
   useEffect(() => {
     if (initialData?.type) {
@@ -156,15 +157,46 @@ export default function DiaryForm({ entryId, initialData, onSuccess, onCancel }:
 
   useEffect(() => {
     if (commonData.classId) {
+      // Reset subject and lists when class changes
+      setSubjects([]);
+      setCommonData(prev => ({ ...prev, subjectId: "" }));
       fetchSubjectsForClass(commonData.classId);
       if (entryType === "remark") {
         fetchStudentsForClass(commonData.classId);
+      } else {
+        setStudents([]);
       }
     } else {
       setSubjects([]);
       setStudents([]);
+      setCommonData(prev => ({ ...prev, subjectId: "" }));
     }
-  }, [commonData.classId, entryType]);
+  }, [commonData.classId, entryType, teacherSubjectIds]);
+
+  // Load teacher subject IDs for filtering
+  useEffect(() => {
+    const fetchTeacherSubjectIds = async () => {
+      try {
+        if (!user?.uid) { setTeacherSubjectIds([]); return; }
+        const tQ = query(collection(db, "teachers"), where("userId", "==", user.uid));
+        const tSnap = await getDocs(tQ);
+        if (tSnap.empty) { setTeacherSubjectIds([]); return; }
+        const t = tSnap.docs[0].data() as any;
+        const ids: string[] = (t.subjects || [])
+          .map((ref: any) => {
+            if (typeof ref === 'string') return ref.split('/').pop();
+            if (ref?.path) return ref.path.split('/').pop();
+            return undefined;
+          })
+          .filter(Boolean) as string[];
+        setTeacherSubjectIds(ids);
+      } catch (e) {
+        console.error("Error fetching teacher subject ids:", e);
+        setTeacherSubjectIds([]);
+      }
+    };
+    fetchTeacherSubjectIds();
+  }, [user?.uid]);
 
   const fetchClasses = async () => {
     if (!schoolId) {
@@ -172,28 +204,45 @@ export default function DiaryForm({ entryId, initialData, onSuccess, onCancel }:
       setErrors({ classes: "School ID not found. Please ensure you're logged in properly." });
       return;
     }
-    
-    console.log("Fetching classes for school:", schoolId);
     setLoadingData(true);
     try {
-      const classesQuery = query(
-        collection(db, "classes"),
-        where("schoolId", "==", doc(db, "school", schoolId))
-      );
-      const classesSnapshot = await getDocs(classesQuery);
-      
-      console.log("Classes found:", classesSnapshot.size);
-      
-      const classOptions: Option[] = classesSnapshot.docs.map(doc => {
-        const data = doc.data();
-        console.log("Class data:", data);
-        return {
-          value: doc.id,
-          label: data.name || "Unknown Class"
-        };
-      });
-      
+      let classOptions: Option[] = [];
+      if (user?.uid) {
+        try {
+          const teacherQ = query(collection(db, "teachers"), where("userId", "==", user.uid));
+          const teacherSnap = await getDocs(teacherQ);
+          if (!teacherSnap.empty) {
+            const t = teacherSnap.docs[0].data() as any;
+            const classRefs: any[] = t.classes || [];
+            if (classRefs.length > 0) {
+              const classDocs = await Promise.all(classRefs.map(async (ref: any) => {
+                try {
+                  const path = typeof ref === 'string' ? ref : ref?.path;
+                  if (!path) return null;
+                  const cDoc = await getDoc(doc(db, path));
+                  if (cDoc.exists()) {
+                    const cData = cDoc.data() as any;
+                    return { value: cDoc.id, label: cData?.name || 'Unnamed Class' } as Option;
+                  }
+                  return null;
+                } catch { return null; }
+              }));
+              classOptions = classDocs.filter((c): c is Option => !!c);
+            }
+          }
+        } catch (e) {
+          console.warn("Failed to fetch teacher classes, falling back to all classes.");
+        }
+      }
+      if (classOptions.length === 0) {
+        const qAll = query(collection(db, "classes"), where("schoolId", "==", doc(db, "school", schoolId)));
+        const snap = await getDocs(qAll);
+        classOptions = snap.docs.map(d => ({ value: d.id, label: (d.data() as any)?.name || "Unknown Class" }));
+      }
       setClasses(classOptions);
+      if (!initialData?.subjectId && classOptions.length > 0 && !commonData.classId) {
+        setCommonData(prev => ({ ...prev, classId: classOptions[0].value }));
+      }
     } catch (error) {
       console.error("Error fetching classes:", error);
       setErrors({ classes: "Failed to load classes" });
@@ -202,38 +251,68 @@ export default function DiaryForm({ entryId, initialData, onSuccess, onCancel }:
     }
   };
 
+  const chunkBy10 = <T,>(arr: T[]): T[][] => { const out: T[][] = []; for (let i = 0; i < arr.length; i += 10) out.push(arr.slice(i, i + 10)); return out; };
+
   const fetchSubjectsForClass = async (classId: string) => {
     if (!schoolId || !classId) {
       console.error("Missing schoolId or classId for fetching subjects:", { schoolId, classId });
       return;
     }
-    
-    console.log("Fetching subjects for class:", classId, "school:", schoolId);
     try {
-      const subjectsQuery = query(
-        collection(db, "subjects"),
-        where("schoolId", "==", doc(db, "school", schoolId)),
-        where("assClass", "array-contains", doc(db, "classes", classId))
-      );
-      const subjectsSnapshot = await getDocs(subjectsQuery);
-      
-      console.log("Subjects found:", subjectsSnapshot.size);
-      
-      const subjectOptions: Option[] = subjectsSnapshot.docs.map(doc => {
-        const data = doc.data();
-        console.log("Subject data:", data);
-        return {
-          value: doc.id,
-          label: data.name || "Unknown Subject"
-        };
-      });
-      
-      setSubjects(subjectOptions);
+      let collected: Option[] = [];
+      if (teacherSubjectIds.length > 0) {
+        const chunks = chunkBy10(teacherSubjectIds);
+        for (const chunk of chunks) {
+          const qy = query(
+            collection(db, "subjects"),
+            where("schoolId", "==", doc(db, "school", schoolId)),
+            where("assClass", "array-contains", doc(db, "classes", classId)),
+            where(documentId(), "in", chunk)
+          );
+          const snap = await getDocs(qy);
+          const opts: Option[] = snap.docs.map(d => ({ value: d.id, label: (d.data() as any).name || "Unknown Subject" }));
+          collected = [...collected, ...opts];
+        }
+      } else {
+        const qy = query(
+          collection(db, "subjects"),
+          where("schoolId", "==", doc(db, "school", schoolId)),
+          where("assClass", "array-contains", doc(db, "classes", classId))
+        );
+        const snap = await getDocs(qy);
+        collected = snap.docs.map(d => ({ value: d.id, label: (d.data() as any).name || "Unknown Subject" }));
+      }
+      // de-duplicate by id
+      const seen = new Set<string>();
+      const unique = collected.filter(s => { if (seen.has(s.value)) return false; seen.add(s.value); return true; });
+      setSubjects(unique);
     } catch (error) {
       console.error("Error fetching subjects:", error);
       setErrors({ subjects: "Failed to load subjects for this class" });
     }
   };
+
+  // If editing, preselect class from subject's assigned classes
+  useEffect(() => {
+    const preselectClassFromSubject = async () => {
+      try {
+        if (!initialData?.subjectId || commonData.classId) return;
+        const sDoc = await getDoc(doc(db, "subjects", initialData.subjectId));
+        if (sDoc.exists()) {
+          const data = sDoc.data() as any;
+          const ass = data?.assClass || [];
+          if (ass.length > 0) {
+            const firstPath = typeof ass[0] === 'string' ? ass[0] : ass[0]?.path;
+            const classId = firstPath ? firstPath.split('/').pop() : "";
+            if (classId) setCommonData(prev => ({ ...prev, classId }));
+          }
+        }
+      } catch (e) {
+        console.warn("Could not preselect class from subject:", e);
+      }
+    };
+    preselectClassFromSubject();
+  }, [initialData?.subjectId]);
 
   const fetchStudentsForClass = async (classId: string) => {
     if (!schoolId || !classId) {

@@ -9,7 +9,6 @@ import SubjectForm from "../../components/forms/SubjectForm";
 import LoadingSpinner from "../../components/shared/LoadingSpinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPlus,
   faEdit,
   faTrash,
   faEye,
@@ -295,13 +294,6 @@ export default function SubjectManagementPage() {
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Subject Management</h1>
               <p className="text-gray-600">Manage subjects and their class assignments</p>
             </div>
-            <button
-              onClick={() => setShowForm(true)}
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-colors"
-            >
-              <FontAwesomeIcon icon={faPlus} />
-              Add Subject
-            </button>
           </div>
 
           {error && (

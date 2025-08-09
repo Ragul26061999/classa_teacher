@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { collection, addDoc, updateDoc, doc, serverTimestamp, query, where, getDocs } from "firebase/firestore";
+import { collection, addDoc, updateDoc, doc, serverTimestamp, query, where, getDocs, getDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebaseClient";
 import { useAuth } from "../../contexts/AuthContext";
 import FormCard from "../shared/FormCard";
@@ -26,6 +26,11 @@ interface SubjectOption {
   label: string;
 }
 
+interface ClassOption {
+  value: string;
+  label: string;
+}
+
 export default function ChapterForm({ chapterId, initialData, onSuccess, onCancel }: ChapterFormProps) {
   const { user, schoolId } = useAuth();
   const [formData, setFormData] = useState({
@@ -35,30 +40,128 @@ export default function ChapterForm({ chapterId, initialData, onSuccess, onCance
     orderIndex: initialData?.orderIndex || 1,
   });
   const [subjects, setSubjects] = useState<SubjectOption[]>([]);
+  const [classes, setClasses] = useState<ClassOption[]>([]);
+  const [selectedClass, setSelectedClass] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [loadingSubjects, setLoadingSubjects] = useState(true);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
+    fetchClasses();
+    // If editing, try to preselect a class that contains the current subject
+    const preselectClassForExistingSubject = async () => {
+      if (initialData?.subjectId && !selectedClass) {
+        try {
+          const subjSnap = await getDoc(doc(db, "subjects", initialData.subjectId));
+          if (subjSnap.exists()) {
+            const data: any = subjSnap.data();
+            const assClassRefs: any[] = data.assClass || [];
+            const firstClassId = assClassRefs
+              .map((ref: any) => {
+                if (!ref) return null;
+                if (typeof ref === "string") return ref.split("/").pop();
+                if (ref?.path) return ref.path.split("/").pop();
+                return ref?.id || null;
+              })
+              .filter(Boolean)?.[0] as string | undefined;
+            if (firstClassId) {
+              setSelectedClass(firstClassId);
+            }
+          }
+        } catch (e) {
+          console.error("Failed to preselect class for subject:", e);
+        }
+      }
+    };
+    preselectClassForExistingSubject();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  useEffect(() => {
     fetchSubjects();
-  }, [schoolId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedClass]);
+
+  // Fetch teacher's classes to drive subject filtering
+  const fetchClasses = async () => {
+    try {
+      if (!user) return;
+      const tQuery = query(collection(db, "teachers"), where("userId", "==", user.uid));
+      const tSnap = await getDocs(tQuery);
+      if (!tSnap.empty) {
+        const tData: any = tSnap.docs[0].data();
+        const classRefs: any[] = tData.classes || [];
+        const classOptions: ClassOption[] = [];
+        for (const cref of classRefs) {
+          try {
+            const cSnap = typeof cref?.path === "string" ? await getDoc(doc(db, cref.path)) : await getDoc(cref);
+            if (cSnap.exists()) {
+              const cData: any = cSnap.data();
+              classOptions.push({ value: cSnap.id, label: cData?.name || "Unnamed Class" });
+            }
+          } catch (e) {
+            console.error("Error resolving class ref:", e);
+          }
+        }
+        setClasses(classOptions);
+        if (!selectedClass && classOptions.length > 0 && !initialData?.subjectId) {
+          setSelectedClass(classOptions[0].value);
+        }
+      } else {
+        setClasses([]);
+      }
+    } catch (e) {
+      console.error("Error fetching classes:", e);
+      setClasses([]);
+    }
+  };
+
+  // Helper to get teacher subject IDs
+  const getTeacherSubjectIds = async (userId: string): Promise<string[]> => {
+    try {
+      const tQuery = query(collection(db, "teachers"), where("userId", "==", userId));
+      const tSnap = await getDocs(tQuery);
+      if (!tSnap.empty) {
+        const tData = tSnap.docs[0].data() as any;
+        if (tData.subjects?.length > 0) {
+          return tData.subjects
+            .map((subjRef: any) => {
+              if (typeof subjRef === "string") return subjRef.split("/").pop();
+              if (subjRef?.path) return subjRef.path.split("/").pop();
+              return subjRef?.id || "";
+            })
+            .filter(Boolean);
+        }
+      }
+      return [];
+    } catch (e) {
+      console.error("Error fetching teacher subject IDs:", e);
+      return [];
+    }
+  };
 
   const fetchSubjects = async () => {
-    if (!schoolId) return;
-    
     setLoadingSubjects(true);
     try {
-      const subjectsQuery = query(
+      if (!selectedClass) {
+        setSubjects([]);
+        return;
+      }
+      if (!user) return;
+
+      const teacherSubjectIds = await getTeacherSubjectIds(user.uid);
+      const classRef = doc(db, "classes", selectedClass);
+
+      let qRef = query(
         collection(db, "subjects"),
-        where("schoolId", "==", doc(db, "school", schoolId))
+        where("assClass", "array-contains", classRef)
       );
-      const subjectsSnapshot = await getDocs(subjectsQuery);
-      
-      const subjectOptions: SubjectOption[] = subjectsSnapshot.docs.map(doc => ({
-        value: doc.id,
-        label: doc.data().name
-      }));
-      
+      if (teacherSubjectIds.length > 0) {
+        qRef = query(qRef, where("__name__", "in", teacherSubjectIds));
+      }
+
+      const snap = await getDocs(qRef);
+      const subjectOptions: SubjectOption[] = snap.docs.map(d => ({ value: d.id, label: (d.data() as any).name || "Unnamed Subject" }));
       setSubjects(subjectOptions);
     } catch (error) {
       console.error("Error fetching subjects:", error);
@@ -126,13 +229,25 @@ export default function ChapterForm({ chapterId, initialData, onSuccess, onCance
     <FormCard title={chapterId ? "Edit Chapter" : "Create New Chapter"}>
       <form onSubmit={handleSubmit} className="space-y-4">
         <Select
+          label="Class"
+          options={classes}
+          value={selectedClass}
+          onChange={(value) => {
+            setSelectedClass(value);
+            setFormData(prev => ({ ...prev, subjectId: "" }));
+          }}
+          placeholder="Select a class"
+          required
+        />
+
+        <Select
           label="Subject"
           options={subjects}
           value={formData.subjectId}
           onChange={(value) => setFormData(prev => ({ ...prev, subjectId: value }))}
-          placeholder="Select a subject"
+          placeholder="Select a subject (choose class first)"
           required
-          disabled={loadingSubjects}
+          disabled={loadingSubjects || !selectedClass}
         />
 
         <Input
