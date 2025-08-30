@@ -237,7 +237,7 @@ export default function ViewEdueronQuestions() {
   return (
     <div className="min-h-screen bg-gray-50 p-8 font-sans">
       <style>{`.katex-display { text-align: left !important; }`}</style>
-      <h1 className="text-2xl font-bold mb-6 text-blue-700 text-left">CLASSA Questions</h1>
+      <h1 className="text-2xl font-bold mb-6 text-blue-700 text-left">Edueron Questions</h1>
       {/* Filters */}
       <div className="flex flex-wrap gap-4 mb-8">
         <div className="flex flex-col">
@@ -277,7 +277,7 @@ export default function ViewEdueronQuestions() {
           </svg>
         </div>
       ) : questions.length === 0 ? (
-        <div className="text-gray-400">No CLASSA questions found.</div>
+        <div className="text-gray-400">No Edueron questions found.</div>
       ) : (
         <>
           <div className="space-y-8">

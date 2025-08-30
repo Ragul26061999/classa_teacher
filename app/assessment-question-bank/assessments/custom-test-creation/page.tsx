@@ -75,32 +75,18 @@ export default function CreateCustomTestPage() {
             setUserSchoolId(schoolId);
             
             if (schoolId) {
-              // Fetch teacher document and resolve only assigned class references
-              const teacherQ = query(collection(db, "teachers"), where("userId", "==", user.uid));
-              const teacherSnap = await getDocs(teacherQ);
-              if (teacherSnap.empty) {
-                setClasses([]);
-              } else {
-                const teacherDoc = teacherSnap.docs[0];
-                const teacherData = teacherDoc.data() as any;
-                const teacherClassRefs = teacherData.classes || [];
-                if (!teacherClassRefs.length) {
-                  setClasses([]);
-                } else {
-                  const classPromises = teacherClassRefs.map(async (classRef: any) => {
-                    try {
-                      const classSnap = await getDoc(classRef);
-                      if (classSnap.exists()) {
-                        const data = classSnap.data() as any;
-                        return { id: classSnap.id, name: data.name };
-                      }
-                    } catch {}
-                    return null;
-                  });
-                  const resolved = (await Promise.all(classPromises)).filter(Boolean) as { id: string; name: string }[];
-                  setClasses(resolved);
-                }
-              }
+              // Query classes where schoolId matches
+              const classesQuery = query(
+                collection(db, "classes"),
+                where("schoolId", "==", doc(db, "school", schoolId))
+              );
+              const classesSnap = await getDocs(classesQuery);
+              const classList: { id: string; name: string }[] = [];
+              classesSnap.forEach((docSnap) => {
+                const data = docSnap.data();
+                classList.push({ id: docSnap.id, name: data.name });
+              });
+              setClasses(classList);
             } else {
               setClasses([]);
             }

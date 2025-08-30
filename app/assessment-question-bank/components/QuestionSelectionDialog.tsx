@@ -87,10 +87,10 @@ const QuestionSelectionDialog: React.FC<QuestionSelectionDialogProps> = ({
               </svg>
             </div>
             <h4 className="text-lg font-semibold text-gray-900 mb-2">
-              CLASSA Questions
+              Edueron Questions
             </h4>
             <p className="text-sm text-gray-600">
-              Access CLASSA's comprehensive question database
+              Access Edueron's comprehensive question database
             </p>
           </div>
         </div>
@@ -159,7 +159,7 @@ const QuestionSelectionDialog: React.FC<QuestionSelectionDialogProps> = ({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-gray-900">
-          CLASSA Questions
+          Edueron Questions
         </h3>
         <button
           onClick={() => setSelectionMode(null)}

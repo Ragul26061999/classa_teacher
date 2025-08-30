@@ -6,7 +6,6 @@ import { db } from "@/lib/firebaseClient";
 import {
   collection,
   query,
-  where,
   getDocs,
   doc,
   getDoc,
@@ -73,7 +72,6 @@ export default function ManageTestsPage() {
   const [page, setPage] = React.useState(1);
   const [pageSize] = React.useState(6);
   const [userSchoolId, setUserSchoolId] = React.useState<string | null>(null);
-  const [teacherClassIds, setTeacherClassIds] = React.useState<string[]>([]);
   const [selectDialogOpen, setSelectDialogOpen] = React.useState<string | null>(null);
   const [selectedQuestions, setSelectedQuestions] = React.useState<{
     [testId: string]: string[];
@@ -110,46 +108,15 @@ export default function ManageTestsPage() {
     }
   };
 
-  // Fetch current user's schoolID and teacher's assigned class IDs
+  // Fetch current user's schoolID
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      try {
-        if (user) {
-          // School scoping
-          const userDoc = await getDoc(doc(db, "users", user.uid));
-          const userData = userDoc.data();
-          if (userData && userData.schoolId) {
-            setUserSchoolId(userData.schoolId);
-          } else {
-            setUserSchoolId(null);
-          }
-
-          // Teacher scoping
-          const tQ = query(collection(db, "teachers"), where("userId", "==", user.uid));
-          const tSnap = await getDocs(tQ);
-          if (!tSnap.empty) {
-            const tData = tSnap.docs[0].data() as any;
-            const ids: string[] = Array.isArray(tData.classes)
-              ? tData.classes.map((c: any) => {
-                  try {
-                    if (typeof c === "string") return c.split("/").pop() || c;
-                    if (c?.id) return c.id;
-                    if (c?.path) return c.path.split("/").pop();
-                  } catch {}
-                  return "";
-                }).filter(Boolean)
-              : [];
-            setTeacherClassIds(Array.from(new Set(ids)));
-          } else {
-            // No teacher doc; treat as admin (no class scoping)
-            setTeacherClassIds([]);
-          }
-        } else {
-          setUserSchoolId(null);
-          setTeacherClassIds([]);
+      if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        const userData = userDoc.data();
+        if (userData && userData.schoolId) {
+          setUserSchoolId(userData.schoolId);
         }
-      } catch (e) {
-        console.warn("Failed to resolve user/teacher scoping:", e);
       }
     });
     return () => unsubscribe();
@@ -166,48 +133,33 @@ export default function ManageTestsPage() {
         if (cached) {
           const { data, timestamp } = JSON.parse(cached);
           if (Date.now() - timestamp < CACHE_EXPIRY_TIME) {
-            // If teacher scoping is active but cached items lack classId, bypass cache
-            const cachedList: any[] = Array.isArray(data) ? data : [];
-            const supportsClassFilter = cachedList.length === 0 || cachedList.every((t) => typeof t.classId === "string");
-            if (!(teacherClassIds.length > 0 && !supportsClassFilter)) {
-              setAllTests(cachedList);
-              const filteredTests = cachedList.filter((t: any) => {
-                const matchesSchool = !userSchoolId || !t.schoolId || t.schoolId === userSchoolId;
-                const matchesClass = teacherClassIds.length === 0 || (t.classId && teacherClassIds.includes(t.classId));
-                return matchesSchool && matchesClass;
-              });
-              setTests(filteredTests);
-              setLoading(false);
-              return;
-            }
+            setAllTests(data);
+            // Filter tests based on school and apply manual filtering
+            const filteredTests = data.filter((t: any) => {
+              const matchesSchool = !userSchoolId || !t.schoolId || t.schoolId === userSchoolId;
+              return matchesSchool;
+            });
+            setTests(filteredTests);
+            setLoading(false);
+            return;
           }
         }
 
         const testsSnap = await getDocs(collection(db, "test"));
         const testList: any[] = [];
         for (const testDoc of testsSnap.docs) {
-          const data = testDoc.data() as any;
-          // Fetch class info
+          const data = testDoc.data();
+          // Fetch class name
           let className = "-";
-          let classIdStr = "";
           if (data.classId) {
             try {
-              // Derive class id
-              if ((data.classId as any)?.id) {
-                classIdStr = (data.classId as any).id;
-              } else if (typeof data.classId === "string") {
-                classIdStr = data.classId.split("/").pop() || data.classId;
-              } else if ((data.classId as any)?.path) {
-                classIdStr = (data.classId as any).path.split("/").pop();
-              }
               const classSnap = await getDoc(data.classId as DocumentReference);
-              className = classSnap.exists() ? (classSnap.data() as any)?.name ?? "-" : "-";
+              className = classSnap.exists() ? classSnap.data().name : "-";
             } catch {}
           }
           testList.push({
             id: testDoc.id,
             name: data.name,
-            classId: classIdStr,
             className,
             start: data.start?.toDate ? data.start.toDate() : data.start,
             end: data.end?.toDate ? data.end.toDate() : data.end,
@@ -231,11 +183,10 @@ export default function ManageTestsPage() {
         
         setAllTests(testList);
         
-        // Filter tests based on school and teacher classes (if any)
+        // Filter tests based on school and apply manual filtering
         const filteredTests = testList.filter((t) => {
           const matchesSchool = !userSchoolId || !t.schoolId || t.schoolId === userSchoolId;
-          const matchesClass = teacherClassIds.length === 0 || (t.classId && teacherClassIds.includes(t.classId));
-          return matchesSchool && matchesClass;
+          return matchesSchool;
         });
         setTests(filteredTests);
       } catch (err: any) {
@@ -244,7 +195,7 @@ export default function ManageTestsPage() {
         setLoading(false);
       }
     })();
-  }, [userSchoolId, teacherClassIds]);
+  }, [userSchoolId]);
 
   // Calculate stats
   const stats = React.useMemo(() => {

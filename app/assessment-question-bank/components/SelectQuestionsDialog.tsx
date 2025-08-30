@@ -427,7 +427,7 @@ const EdueronQuestionsDialog: React.FC<EdueronQuestionsDialogProps> = ({ open, o
             <div className="flex items-center gap-2">
               <label className="flex items-center gap-1 cursor-pointer">
                 <input type="radio" name="sp" checked={spValue} onChange={() => setSpValue(true)} className="accent-blue-600" />
-                <span className="text-blue-700">View CLASSA Questions</span>
+                <span className="text-blue-700">View Edueron Questions</span>
               </label>
               <label className="flex items-center gap-1 cursor-pointer">
                 <input type="radio" name="sp" checked={!spValue} onChange={() => setSpValue(false)} className="accent-blue-600" />
